@@ -1,0 +1,11 @@
+#! /bin/sh
+
+echo "$(date) $0 $@" >> /root/rcS.log
+
+if grep -qv 'kexecd' /proc/cmdline; then
+    kexec --load /vmlinuz --initrd=/initrd.img --append=' root=LABEL=DOROOT ro kexecd' &&
+    mount -o ro,remount / &&
+    kexec -e
+fi
+
+exec /etc/init.d/rc S

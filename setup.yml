@@ -1,0 +1,21 @@
+---
+- name: install debian testing on digitalocean
+  hosts: digitalocean
+  user: root
+
+  tasks:
+
+    - name: add testing repo
+      lineinfile: dest=/etc/apt/sources.list regexp=testing line='deb http://ftp.debian.org/debian/ testing main'
+
+    - name: apt-get update and upgrade
+      apt: update_cache=yes upgrade=dist
+
+    - name: install kexec
+      apt: pkg=kexec-tools state=latest
+
+    - name: copy rcS
+      copy: src=templates/rcS dest=/etc/init.d/rcS mode=755
+
+    - name: reboot
+      command: coldreboot
