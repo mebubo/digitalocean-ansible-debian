@@ -4,4 +4,4 @@ Usage:
 
 * `ansible-playbook -i hosts.ini setup.yml`
 
-The kexec recipe is by http://www.youtube.com/watch?v=LHNPTvMwHPE .
+The kexec recipe is from http://www.youtube.com/watch?v=LHNPTvMwHPE.
